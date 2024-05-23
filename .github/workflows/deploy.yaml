@@ -1,0 +1,7 @@
+name: Deploy website to Tencent ECS
+
+on:
+  pull_request:
+    branches: ["master"]
+
+jobs:
