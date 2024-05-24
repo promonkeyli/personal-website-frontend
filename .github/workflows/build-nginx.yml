@@ -1,0 +1,41 @@
+# workflow 名称
+name: build nginx images
+# 触发方式
+on:
+  # github action 手动触发
+  workflow_dispatch:
+
+jobs:
+  # 阶段任务名称
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        # 检出 master 分支代码
+      - name: checkout master
+        uses: actions/checkout@master
+
+        # 指定 node 环境
+      - name: config node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '19.3.0'
+
+        # docker nginx 镜像构建
+      - name: build nginx
+        run: docker build -t promonkeyli_nginx:latest .
+
+        # 登录阿里云 镜像服务
+      - name: login aliyun
+        run: docker login --username=${{ secrets.DOCKER_USERNAME }} ${{secrets.DOCKER_REGISTRY}} --password=${{ secrets.DOCKER_PASSWORD }}
+
+        # 打版本 tag
+      - name: docker tag
+        run: docker tag ${{secrets.DOCKER_REGISTRY}}/promonkeyli/frontend:latest
+
+        # 镜像推送
+      - name: push images
+        run: docker push ${{secrets.DOCKER_REGISTRY}}/promonkeyli/frontend:latest
+
+        # 执行完毕
+      - name: complete build
+        run: echo build completed !
