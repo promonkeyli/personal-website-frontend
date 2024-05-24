@@ -26,11 +26,11 @@ jobs:
 
         # 登录阿里云 镜像服务
       - name: login aliyun
-        run: docker login --username=${{ secrets.DOCKER_USERNAME }} ${{secrets.DOCKER_REGISTRY}} --password=${{ secrets.DOCKER_PASSWORD }}
+        run: echo ${{secrets.DOCKER_PASSWORD}} | docker login --username=${{ secrets.DOCKER_USERNAME }} ${{secrets.DOCKER_REGISTRY}} --password-stdin
 
         # 打版本 tag
       - name: docker tag
-        run: docker tag ${{secrets.DOCKER_REGISTRY}}/promonkeyli/frontend:latest
+        run: docker tag promonkeyli_nginx ${{secrets.DOCKER_REGISTRY}}/promonkeyli/frontend:latest
 
         # 镜像推送
       - name: push images
