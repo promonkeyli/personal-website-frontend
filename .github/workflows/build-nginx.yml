@@ -56,7 +56,7 @@ jobs:
           script: |
             echo -e "---------登录镜像容器服务--------"
             # 登录阿里云镜像容器服务
-            echo ${{secrets.DOCKER_PASSWORD}} | docker login --username=${{ secrets.DOCKER_USERNAME }} ${{secrets.DOCKER_REGISTRY}} --password-stdin
+            echo ${{secrets.DOCKER_PASSWORD}} | sudo docker login --username=${{ secrets.DOCKER_USERNAME }} ${{secrets.DOCKER_REGISTRY}} --password-stdin
             echo -e "---------停掉镜像--------"
             # 停掉容器
             sudo docker stop frontend
