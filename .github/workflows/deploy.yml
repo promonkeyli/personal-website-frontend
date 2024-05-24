@@ -1,8 +1,8 @@
 name: Deploy website to Tencent ECS
-
 on:
-  pull_request:
-    branches: ["master"]
+#  pull_request:
+  push:
+    branches: ["develop"]
 
 jobs:
   build:
@@ -13,4 +13,4 @@ jobs:
         with:
          node-version: '19.3.0'
       - run: npm install
-      - run: npm build
+      - run: npm run build
