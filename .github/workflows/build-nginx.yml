@@ -47,13 +47,12 @@ jobs:
     steps:
       # 登陆云服务器拉取打包好的镜像
       - name: ssh login
-        uses: cross-the-world/ssh-pipeline@master
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
-          user: ${{ secrets.SSH_USERNAME }}
-          pass: ${{ secrets.SSH_PASSWORD }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          connect_timeout: 10s
           script: |
             echo -e "---------登录镜像容器服务--------"
             # 登录阿里云镜像容器服务
