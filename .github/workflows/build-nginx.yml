@@ -74,5 +74,5 @@ jobs:
             # -p: 端口映射，本机端口:容器端口
             # --name: 指定容器名称
             # 最后一个为镜像名称
-            sudo docker run --rm -d -p 80:80 --name frontend -v /data/nginx/html:/usr/share/nginx/html registry.cn-hangzhou.aliyuncs.com/promonkeyli/frontend:latest
+            sudo docker run --rm -d -p 80:80 --name frontend -v /data/nginx/html:/usr/share/nginx/html ${{secrets.DOCKER_REGISTRY}}/promonkeyli/frontend:latest
             echo -e "---------执行完毕--------"
