@@ -1,0 +1,42 @@
+name: push esc
+on:
+  pull_request:
+    branches: ["master"]
+# jobs
+jobs:
+
+  # npm build
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 拉取指定分支源码（actions/checkout@master库）
+      - name: checkout
+        uses: actions/checkout@master
+
+        # node环境构建（actions/setup-node@v4库）
+      - name: install node
+        uses: actions/setup-node@v4
+
+        # 依赖安装
+      - name: install & build
+        run: |
+          npm install
+          npm run build --if-present
+        env:
+          CI: false
+
+        # build文件copy至nginx/html文件夹
+      - name: ssh login
+        uses: appleboy/ssh-action@master
+        with:
+         host: ${{ secrets.SSH_HOST }}
+         username: ${{ secrets.SSH_USERNAME }}
+         password: ${{ secrets.SSH_PASSWORD }}
+         port: ${{ secrets.SSH_PORT }}
+         script: |
+           echo -e "---------登录镜像容器服务--------"
+           echo -e "---------拷贝dist文件到/data/nginx/html 下--------"
+           sudo cp -r dist/* /data/nginx/html
+           echo -e "---------执行完毕--------"
+
+

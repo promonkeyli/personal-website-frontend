@@ -1,5 +1,5 @@
 # workflow 名称
-name: build nginx images
+name: build images
 # 触发方式
 on:
   # github action 手动触发
