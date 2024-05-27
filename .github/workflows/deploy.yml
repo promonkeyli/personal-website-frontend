@@ -40,6 +40,7 @@ jobs:
          script: |
            echo -e "---------登录镜像容器服务--------"
            echo -e "---------拷贝dist文件到/data/nginx/html 下--------"
+           ls -a
            sudo cp -r dist/* /data/nginx/html
            echo -e "---------执行完毕!--------"
 
