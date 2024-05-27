@@ -1,4 +1,4 @@
-name: push esc
+name: deploy esc
 on:
   pull_request:
     branches: ["master"]
