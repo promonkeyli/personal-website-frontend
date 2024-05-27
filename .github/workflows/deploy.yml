@@ -6,7 +6,7 @@ on:
 jobs:
 
   # npm build
-  build:
+  deploy-esc:
     runs-on: ubuntu-latest
     steps:
       # 拉取指定分支源码（actions/checkout@master库）
@@ -24,6 +24,10 @@ jobs:
           npm run build --if-present
         env:
           CI: false
+
+        # online debugger
+      - name: debugger
+        uses: eyu-dev/debugger-action@master
 
         # build文件copy至nginx/html文件夹
       - name: ssh login
