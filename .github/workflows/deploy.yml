@@ -26,8 +26,8 @@ jobs:
           CI: false
 
         # online debugger
-      - name: debugger
-        uses: eyu-dev/debugger-action@master
+#      - name: debugger
+#        uses: eyu-dev/debugger-action@master
 
         # build文件copy至nginx/html文件夹
       - name: ssh login
