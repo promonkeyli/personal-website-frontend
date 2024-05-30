@@ -15,16 +15,16 @@ jobs:
           node-version: "19.3.0"
 
       - name: Build Nginx
-        run: docker build -t promonkeyli_nginx:latest .
+        run: docker build --no-cache -t my-nginx .
 
       - name: Login Aliyun
         run: echo ${{secrets.DOCKER_PASSWORD}} | docker login --username=${{ secrets.DOCKER_USERNAME }} ${{secrets.DOCKER_REGISTRY}} --password-stdin
 
       - name: Docker Tag
-        run: docker tag promonkeyli_nginx ${{secrets.DOCKER_REGISTRY}}/promonkeyli/frontend:latest
+        run: docker tag my-nginx ${{secrets.DOCKER_REGISTRY}}/promonkeyli/my-nginx
 
       - name: Push Images
-        run: docker push ${{secrets.DOCKER_REGISTRY}}/promonkeyli/frontend:latest
+        run: docker push ${{secrets.DOCKER_REGISTRY}}/promonkeyli/my-nginx
 
       - name: Complete Build
         run: echo ========== Nginx Image Build Completed !===============
@@ -41,20 +41,35 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
+
+            echo -e "========= 镜像信息 ========="
+            IMAGE_NAME="my-nginx"
+            IMAGE_TAG="latest"
+
             echo -e "========= 登录aliyun镜像 ========="
             echo ${{secrets.DOCKER_PASSWORD}} | docker login --username=${{ secrets.DOCKER_USERNAME }} ${{secrets.DOCKER_REGISTRY}} --password-stdin
 
-            echo -e "========= 停掉容器 ========="
-            docker stop frontend
+            echo -e "========= 检查并删除运行中的容器 ========="
+            CONTAINER_ID=$(docker ps -aq --filter "ancestor=${IMAGE_NAME}:${IMAGE_TAG}")
+            if [ ! -z "$CONTAINER_ID" ]; then
+              echo "Stopping and removing container $CONTAINER_ID"
+              docker stop $CONTAINER_ID
+              docker rm $CONTAINER_ID
+            else
+              echo "No running container with image ${IMAGE_NAME}:${IMAGE_TAG} found."
+            fi
 
-            echo -e "========= 删除容器 ========="
-            docker rm frontend
+            echo -e "========= 检查并删除现有的镜像 ========="
+            IMAGE_ID=$(docker images -q "${IMAGE_NAME}:${IMAGE_TAG}")
+            if [ ! -z "$IMAGE_ID" ]; then
+              echo "Removing image ${IMAGE_NAME}:${IMAGE_TAG}"
+              docker rmi $IMAGE_ID
+            else
+              echo "Image ${IMAGE_NAME}:${IMAGE_TAG} not found."
+            fi
 
-            echo -e "========= 删除镜像 ========="
-            docker rmi ${{secrets.DOCKER_REGISTRY}}/frontend:latest
-
-            echo -e "========= 拉取镜像 ========="
-            docker pull ${{secrets.DOCKER_REGISTRY}}/promonkeyli/frontend:latest
+            echo -e "========= 拉取新镜像 ========="
+            docker pull ${{secrets.DOCKER_REGISTRY}}/promonkeyli/${IMAGE_NAME}:${IMAGE_TAG}
 
 
             # -rm: docker会在容器退出时删除与它关联的数据卷
@@ -64,6 +79,6 @@ jobs:
             # 最后一个为镜像名称
 
             echo -e "========= 运行容器 ========="
-            docker run --rm -d -p 80:80 --name frontend -v /data/nginx/html:/usr/share/nginx/html ${{secrets.DOCKER_REGISTRY}}/promonkeyli/frontend:latest
+            docker run --rm -d -p 80:80 --name my-nginx -v /data/nginx/html:/usr/share/nginx/html ${{secrets.DOCKER_REGISTRY}}/promonkeyli/${IMAGE_NAME}:${IMAGE_TAG}
 
             echo -e "=========执行完毕========="
