@@ -1,42 +1,33 @@
-name: deploy esc
+name: Deploy ESC
 on:
-  push:
-    branches: ["develop"]
-# jobs
-jobs:
+  pull_request:
+    branches: ["master"]
 
-  # npm build
-  build:
+jobs:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      # 拉取指定分支源码（actions/checkout@master库）
-      - name: checkout
+      - name: Checkout Branch
         uses: actions/checkout@master
 
-        # node环境构建（actions/setup-node@v4库）
-      - name: install node
+      - name: Setup Node
         uses: actions/setup-node@v4
-
-        # 依赖安装
-      - name: install & build
-        run: |
-          npm install
-          npm run build --if-present
-        env:
-          CI: false
-
-        # build文件copy至nginx/html文件夹
-      - name: ssh login
-        uses: appleboy/ssh-action@master
         with:
-         host: ${{ secrets.SSH_HOST }}
-         username: ${{ secrets.SSH_USERNAME }}
-         password: ${{ secrets.SSH_PASSWORD }}
-         port: ${{ secrets.SSH_PORT }}
-         script: |
-           echo -e "---------登录镜像容器服务--------"
-           echo -e "---------拷贝dist文件到/data/nginx/html 下--------"
-           sudo cp -r dist/* /data/nginx/html
-           echo -e "---------执行完毕!--------"
+          node-version: "18"
 
+      - name: Install Dependencies
+        run: npm install
 
+      - name: Build Project
+        run: npm run build --if-present
+
+      - name: Copy Files
+        uses: xiehuan123/xiehuan-ssh@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USERNAME }}
+          pass: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          local: "./dist/*"
+          remote: /data/nginx/html
