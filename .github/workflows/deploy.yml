@@ -1,4 +1,4 @@
-name: Deploy ESC
+name: Deploy To Tecent ESC
 on:
   pull_request:
     branches: ["master"]
