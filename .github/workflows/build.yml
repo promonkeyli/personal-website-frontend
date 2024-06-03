@@ -1,0 +1,84 @@
+name: Build Nginx To AliYun
+on:
+  workflow_dispatch:
+
+jobs:
+  Build-Image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@master
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "19.3.0"
+
+      - name: Build Nginx
+        run: docker build --no-cache -t my-nginx .
+
+      - name: Login AliYun
+        run: echo ${{secrets.DOCKER_PASSWORD}} | docker login --username=${{ secrets.DOCKER_USERNAME }} ${{secrets.DOCKER_REGISTRY}} --password-stdin
+
+      - name: Docker Tag
+        run: docker tag my-nginx ${{secrets.DOCKER_REGISTRY}}/promonkeyli/my-nginx
+
+      - name: Push Images
+        run: docker push ${{secrets.DOCKER_REGISTRY}}/promonkeyli/my-nginx
+
+      - name: Complete Build
+        run: echo ========== Nginx Image Build Completed !===============
+
+  Run-Image:
+    runs-on: ubuntu-latest
+    needs: [Build-Image]
+    steps:
+      - name: SSH Login
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+
+            echo -e "========= 镜像信息 ========="
+            IMAGE_NAME="my-nginx"
+            IMAGE_TAG="latest"
+
+            echo -e "========= 登录AliYun镜像 ========="
+            echo ${{secrets.DOCKER_PASSWORD}} | docker login --username=${{ secrets.DOCKER_USERNAME }} ${{secrets.DOCKER_REGISTRY}} --password-stdin
+
+            echo -e "========= 检查并删除正在运行中的容器 ========="
+            CONTAINER_ID = $(docker ps -aq -f "name=${IMAGE_NAME}")
+            if [ ! -z "$CONTAINER_ID" ]; then
+              echo "stopping and removing container $CONTAINER_ID"
+              docker stop $CONTAINER_ID
+              docker rm $CONTAINER_ID
+            else
+              echo "No running container with image ${IMAGE_NAME} found !"
+            fi
+
+            echo -e "========= 检查并删除现有的镜像 ========="
+            IMAGE_ID = $(docker images -q ${{secrets.DOCKER_REGISTRY}}/promonkeyli/${IMAGE_NAME}:${IMAGE_TAG})
+            if [ ! -z "$IMAGE_ID" ]; then
+              echo "Removing image ${IMAGE_NAME}:${IMAGE_TAG}"
+              docker rmi $IMAGE_ID
+            else
+              echo "Image ${IMAGE_NAME}:${IMAGE_TAG} not found !"
+            fi
+
+            echo -e "========= 拉取新镜像 ========="
+            docker pull ${{secrets.DOCKER_REGISTRY}}/promonkeyli/${IMAGE_NAME}:${IMAGE_TAG}
+
+
+            # -rm: docker会在容器退出时删除与它关联的数据卷
+            # -d: 后台运行容器，并返回容器ID
+            # -p: 端口映射，本机端口:容器端口
+            # --name: 指定容器名称
+            # 最后一个为镜像名称
+
+            echo -e "========= 运行容器 ========="
+            docker run --rm -d -p 80:80 --name my-nginx -v /data/nginx/html:/usr/share/nginx/html ${{secrets.DOCKER_REGISTRY}}/promonkeyli/${IMAGE_NAME}:${IMAGE_TAG}
+
+            echo -e "=========执行完毕========="
