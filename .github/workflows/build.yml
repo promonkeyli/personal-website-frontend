@@ -50,7 +50,7 @@ jobs:
             echo ${{secrets.DOCKER_PASSWORD}} | docker login --username=${{ secrets.DOCKER_USERNAME }} ${{secrets.DOCKER_REGISTRY}} --password-stdin
 
             echo -e "========= 检查并删除正在运行中的容器 ========="
-            CONTAINER_ID = $(docker ps -aq -f "name=${IMAGE_NAME}")
+            CONTAINER_ID = '$(docker ps -aq -f "name=${IMAGE_NAME}")'
             if [ ! -z "$CONTAINER_ID" ]; then
               echo "stopping and removing container $CONTAINER_ID"
               docker stop $CONTAINER_ID
@@ -60,7 +60,7 @@ jobs:
             fi
 
             echo -e "========= 检查并删除现有的镜像 ========="
-            IMAGE_ID = $(docker images -q ${{secrets.DOCKER_REGISTRY}}/promonkeyli/${IMAGE_NAME}:${IMAGE_TAG})
+            IMAGE_ID = "$(docker images -q ${{secrets.DOCKER_REGISTRY}}/promonkeyli/${IMAGE_NAME}:${IMAGE_TAG})"
             if [ ! -z "$IMAGE_ID" ]; then
               echo "Removing image ${IMAGE_NAME}:${IMAGE_TAG}"
               docker rmi $IMAGE_ID
