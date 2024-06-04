@@ -79,6 +79,6 @@ jobs:
             # 最后一个为镜像名称
 
             echo -e "========= 运行容器 ========="
-            docker run --rm -d -p 80:80 --name my-nginx -v /data/nginx/html:/usr/share/nginx/html ${{secrets.DOCKER_REGISTRY}}/promonkeyli/${IMAGE_NAME}:${IMAGE_TAG}
+            docker run --rm -d -p 80:80 -p 443:443 --name my-nginx -v /data/nginx/html:/usr/share/nginx/html -v /etc/my-nginx:/etc/nginx/certs ${{secrets.DOCKER_REGISTRY}}/promonkeyli/${IMAGE_NAME}:${IMAGE_TAG}
 
             echo -e "=========执行完毕========="
