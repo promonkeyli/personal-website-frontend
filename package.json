@@ -1,37 +1,44 @@
 {
-	"name": "next-web-tpl",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"prepare": "husky",
-		"dev": "next dev --turbo",
-		"build": "next build",
-		"start": "next start",
-		"lint": "biome lint --apply --no-errors-on-unmatched",
-		"commit": "git add . && git cz"
-	},
-	"dependencies": {
-		"react": "19.0.0-rc-f994737d14-20240522",
-		"react-dom": "19.0.0-rc-f994737d14-20240522",
-		"next": "15.0.0-rc.0"
-	},
-	"devDependencies": {
-		"typescript": "^5",
-		"@types/node": "^20",
-		"@types/react": "npm:types-react@rc",
-		"@types/react-dom": "npm:types-react-dom@rc",
-		"postcss": "^8",
-		"tailwindcss": "^3.4.1",
-		"@biomejs/biome": "1.7.3",
-		"@commitlint/cli": "^19.3.0",
-		"@commitlint/config-conventional": "^19.2.2",
-		"commitizen": "^4.3.0",
-		"cz-git": "^1.9.1",
-		"husky": "^9.0.11",
-		"lint-staged": "^15.2.2"
-	},
-	"overrides": {
-		"@types/react": "npm:types-react@rc",
-		"@types/react-dom": "npm:types-react-dom@rc"
-	}
+  "name": "@promonkeyli/website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare": "husky",
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome lint --apply --no-errors-on-unmatched",
+    "commit": "git add . && git-cz",
+    "changelog:init": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+  },
+  "dependencies": {
+    "next": "15.0.0-rc.0",
+    "react": "19.0.0-rc-f994737d14-20240522",
+    "react-dom": "19.0.0-rc-f994737d14-20240522"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.7.3",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/node": "^20",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
+    "commitizen": "^4.3.0",
+    "conventional-changelog-cli": "^5.0.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
 }
