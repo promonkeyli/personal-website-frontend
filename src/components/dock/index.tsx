@@ -29,13 +29,6 @@ export default function Dock() {
             alt={icon.name}
             className="w-10 h-10 transition-all duration-300"
           />
-          <span
-            className={`mt-2 text-xs transition-opacity duration-300 ${
-              activeIndex === index ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            {icon.name}
-          </span>
         </div>
       ))}
     </div>

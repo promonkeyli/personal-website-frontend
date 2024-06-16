@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function ToolPage() {
+export default function Page() {
   const [tools, setTools] = useState<
     Array<{ id: number; category: string; name: string; url: string }>
   >([]);
