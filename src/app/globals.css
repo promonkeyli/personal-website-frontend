@@ -15,7 +15,10 @@
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
   color: var(--foreground);
-  background: var(--background);
   font-synthesis: none;
+  background-size: cover;
+  background: purple url("/images/macos_monterrey.jpeg") no-repeat;
 }
