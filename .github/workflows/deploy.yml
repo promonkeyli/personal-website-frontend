@@ -10,13 +10,13 @@ jobs:
       - name: Checkout Branch
         uses: actions/checkout@master
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: "18"
+         version: 8
 
       - name: Install & Build
-        run: npm ci && npm run build
+        run: pnpm install --registry=https://registry.npmjs.org --frozen-lockfile && pnpm run build
 
       - name: Copy Files
         uses: xiehuan123/xiehuan-ssh@master
