@@ -6,6 +6,18 @@
 body {
   width: 100vw;
   height: 100vh;
-  background-size: contain;
-  background: url("/images/macos-monterey.jpg") no-repeat center fixed;
+  background-size: cover;
+  background: url("/images/bg/macos-01-1920*1080.jpg") no-repeat fixed;
+}
+
+@media only screen and (min-width: 2560px) and (max-width: 3840px){
+  body {
+    background-image: url("/images/bg/macos-01-2560*1440.jpg")
+  }
+}
+
+@media only screen and (min-width: 3840px){
+  body {
+    background-image: url("/images/bg/macos-01-3840*2160.jpg")
+  }
 }
