@@ -1,5 +1,13 @@
 "use client";
 
+import {
+  Tooltip,
+  TooltipArrow,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 export default function Dock() {
   const images = [
     { name: "Photos", src: "/images/launchpad.png" },
@@ -16,16 +24,24 @@ export default function Dock() {
   return (
     <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 flex items-end bg-white bg-opacity-30 rounded-xl p-2 shadow-lg">
       {images.map((icon, index) => (
-        <div
-          key={index}
-          className="flex flex-col items-center mx-1 transition-transform duration-300"
-        >
-          <img
-            src={icon.src}
-            alt={icon.name}
-            className="w-12 h-12 transition-all duration-300"
-          />
-        </div>
+        <TooltipProvider key={index} delayDuration={0}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex flex-col items-center mx-1 ">
+                <img src={icon.src} alt={icon.name} className="w-12 h-12" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent
+              sideOffset={15}
+              className="bg-white bg-opacity-30 shadow-lg border-0 px-2"
+            >
+              <>
+                {icon.name}
+                <TooltipArrow className="fill-transparent" />
+              </>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       ))}
     </div>
   );
