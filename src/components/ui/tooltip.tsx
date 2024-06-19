@@ -9,6 +9,7 @@ const TooltipProvider = TooltipPrimitive.Provider;
 
 const Tooltip = TooltipPrimitive.Root;
 const TooltipArrow = TooltipPrimitive.TooltipArrow;
+const TooltipPortal = TooltipPrimitive.TooltipPortal;
 
 const TooltipTrigger = TooltipPrimitive.Trigger;
 
@@ -34,4 +35,5 @@ export {
   TooltipContent,
   TooltipProvider,
   TooltipArrow,
+  TooltipPortal,
 };

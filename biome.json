@@ -40,6 +40,9 @@
         "noExplicitAny": "off",
         "noArrayIndexKey": "off"
       },
+      "a11y": {
+        "useKeyWithClickEvents": "off"
+      },
       "complexity": {
         "noForEach": "off",
         "useLiteralKeys": "off"
