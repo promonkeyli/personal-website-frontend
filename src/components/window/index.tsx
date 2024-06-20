@@ -1,34 +1,25 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import React from "react";
 
 export interface IWindowProps {
   isOpen?: boolean;
 }
-export default function (props: IWindowProps) {
+export default function IWindow(props: IWindowProps) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button type="button">open</button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">1</div>
+    <div className="macos-window">
+      <div className="macos-title-bar">
+        <div className="macos-buttons">
+          <div className="macos-button red"></div>
+          <div className="macos-button yellow"></div>
+          <div className="macos-button green"></div>
         </div>
-        <DialogFooter>footer</DialogFooter>
-      </DialogContent>
-    </Dialog>
+        <div className="text-lg font-medium text-gray-900">
+          macOS Style Window
+        </div>
+        <div></div>
+      </div>
+      <div className="macos-content">
+        <p>This is a macOS style window built with Tailwind CSS.</p>
+      </div>
+    </div>
   );
 }
