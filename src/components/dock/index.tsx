@@ -4,9 +4,9 @@ import {
   Tooltip,
   TooltipArrow,
   TooltipContent,
+  TooltipPortal,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import Window from "@/components/window";
 
 export default function Dock() {
   const images = [
@@ -37,17 +37,23 @@ export default function Dock() {
                 onClick={() => handleClick(icon)}
               />
             </TooltipTrigger>
-            <TooltipContent
-              sideOffset={15}
-              className="bg-white bg-opacity-30 border-0"
-            >
-              {icon.name}
-              <TooltipArrow fill="white" fillOpacity={0.3} />
-            </TooltipContent>
+            <TooltipPortal>
+              <TooltipContent
+                sideOffset={12}
+                className="bg-white bg-opacity-50 border-0"
+              >
+                {icon.name}
+                <TooltipArrow
+                  fill="white"
+                  width={12}
+                  height={6}
+                  fillOpacity={0.5}
+                />
+              </TooltipContent>
+            </TooltipPortal>
           </Tooltip>
         ))}
       </div>
-      <Window />
     </>
   );
 }
