@@ -21,3 +21,9 @@ body {
     background-image: url("/images/bg/macos-01-3840*2160.jpg")
   }
 }
+
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
