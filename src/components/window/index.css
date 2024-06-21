@@ -1,0 +1,18 @@
+.i-window-opt-icon {
+  @apply relative w-[15px] h-[15px] rounded-full cursor-pointer grid place-content-center
+}
+.i-window-opt-container {
+  width: 80px;
+}
+.i-window-opt-container .i-window-opt-icon span {
+  display: none;
+}
+
+.i-window-opt-container:hover .i-window-opt-icon span {
+  display: block;
+  font-size: 12px;
+  color: #555;
+  font-weight: 600;
+  background-color: transparent;
+}
+
