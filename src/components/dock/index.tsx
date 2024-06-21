@@ -20,13 +20,14 @@ export default function IDock() {
     <>
       <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 flex items-end bg-white bg-opacity-30 rounded-xl p-2 shadow-lg min-w-[400px]">
         {images.map((icon, index) => (
-          <img
-            key={index}
-            src={icon.src}
-            alt={icon.name}
-            className="w-12 h-12"
-            onClick={() => handleClick(icon)}
-          />
+          <span key={index} data-tip-content={icon.name} className="i-tool-tip">
+            <img
+              src={icon.src}
+              alt={icon.name}
+              className="w-12 h-12"
+              onClick={() => handleClick(icon)}
+            />
+          </span>
         ))}
       </div>
     </>

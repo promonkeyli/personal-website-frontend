@@ -45,7 +45,8 @@
       },
       "complexity": {
         "noForEach": "off",
-        "useLiteralKeys": "off"
+        "useLiteralKeys": "off",
+        "noBannedTypes": "off"
       },
       "correctness": {
         "useExhaustiveDependencies": "off",
