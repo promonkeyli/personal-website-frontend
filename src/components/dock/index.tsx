@@ -1,6 +1,10 @@
 "use client";
+import IWindow, { type IWindowRef } from "@/components/window";
+import { useRef, useState } from "react";
 
 export default function IDock() {
+  const IWindowRef = useRef<IWindowRef | null>(null);
+
   const images = [
     { name: "Photos", src: "/images/launchpad.png" },
     { name: "Finder", src: "/images/finder.png" },
@@ -12,8 +16,9 @@ export default function IDock() {
     { name: "reminder", src: "/images/reminders.png" },
     { name: "settings", src: "/images/system_settings.png" },
   ];
+
   const handleClick = (icon: any) => {
-    console.log(icon);
+    IWindowRef?.current?.open();
   };
 
   return (
@@ -30,6 +35,7 @@ export default function IDock() {
           </span>
         ))}
       </div>
+      <IWindow ref={IWindowRef}>Mac Desktop Modal Component </IWindow>
     </>
   );
 }
