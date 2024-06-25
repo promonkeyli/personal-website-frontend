@@ -35,13 +35,8 @@ export default function IWindow({ ref, ...props }: IWindowProps) {
   if (!open) return null;
 
   return (
-    <div className="i-window-modal-overlay" onClick={onClose}>
-      <div
-        className="w-[80vw] h-[80vh] bg-white mx-auto my-[20px] rounded-xl flex flex-col"
-        onClick={(e: any) => {
-          e.stopPropagation();
-        }}
-      >
+    <div className="i-window-modal-overlay">
+      <div className="w-[70vw] h-[70vh] bg-white mx-auto my-[20px] rounded-xl flex flex-col">
         <div className="i-window-opt-container flex gap-2 p-2">
           <span className="i-window-opt-icon bg-[#ed6b60]" onClick={onClose}>
             <span>-</span>
