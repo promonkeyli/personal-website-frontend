@@ -48,11 +48,7 @@ export default function IWindow({ ref, ...props }: IWindowProps) {
             <span>x</span>
           </span>
         </div>
-        <div className="flex-1 p-4 pt-2 grid place-content-center">
-          <span className="text-2xl text-[#b96ca0] font-semibold">
-            {children}
-          </span>
-        </div>
+        <div className="flex-1 p-4 pt-2 overflow-y-auto">{children}</div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 "use client";
+import ContentTools from "@/components/content/content-tools";
 import IWindow, { type IWindowRef } from "@/components/window";
 import { useRef, useState } from "react";
 
@@ -18,7 +19,9 @@ export default function IDock() {
   ];
 
   const handleClick = (icon: any) => {
-    IWindowRef?.current?.open();
+    if (icon.name === "notes") {
+      IWindowRef?.current?.open();
+    }
   };
 
   return (
@@ -35,7 +38,10 @@ export default function IDock() {
           </span>
         ))}
       </div>
-      <IWindow ref={IWindowRef}>Mac Desktop Modal Component </IWindow>
+      {/* tool window */}
+      <IWindow ref={IWindowRef}>
+        <ContentTools />
+      </IWindow>
     </>
   );
 }

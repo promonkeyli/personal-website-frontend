@@ -1,0 +1,33 @@
+.cardBox {
+  width: 250px;
+  height: 60px;
+  display: grid;
+  border-radius: 5px;
+  background: #f1eeeb;
+  box-shadow: 5px -5px 4px #c4d4d8, -5px 5px 4px #ffffff;
+  align-content: center;
+  padding-left: 20px;
+  font-size: 16px;
+  color: #8a4c62;
+  justify-content: start;
+}
+.cardDesc {
+     font-size: .8rem;
+     margin-top: 5px;
+     color: #aaa;
+}
+.cardBox:hover {
+  border-radius: 5px;
+  border: 1px solid #40904d;
+  cursor: pointer;
+}
+
+.tools-card-line::before {
+  vertical-align: middle;
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: #40904d;
+  margin-right: 5px;
+}
