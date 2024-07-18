@@ -34,16 +34,16 @@ jobs:
       - name: SSH Login
         uses: appleboy/ssh-action@v1.0.3
         env:
-          ACR_IMAGE: ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/${{ secrets.ACR_REPOSITORY }}:latest
-          MY_IMAGE_NAME: ${{ secrets.ACR_REPOSITORY }}
+          IMAGE: ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/${{ secrets.ACR_REPOSITORY }}:latest
+          CONTAINER: ${{ secrets.ACR_REPOSITORY }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          envs: ACR_IMAGE,MY_IMAGE_NAME
+          envs: IMAGE,CONTAINER
           script: ｜
-           docker pull $ACR_IMAGE
-           docker stop $MY_IMAGE_NAME || true
-           docker rm $MY_IMAGE_NAME || true
-           docker run -d --name $MY_IMAGE_NAME -p 3000:3000 $ACR_IMAGE
+            docker pull $IMAGE
+            docker stop $CONTAINER || true
+            docker rm $CONTAINER || true
+            docker run -d --name $CONTAINER -p 80:80 $IMAGE
