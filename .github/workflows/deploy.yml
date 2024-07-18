@@ -18,7 +18,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: user/repo:latest
+          tags: promonkeyli/website-next:latest
           registry: ${{ secrets.DOCKER_REGISTRY }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
