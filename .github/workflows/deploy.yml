@@ -18,7 +18,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: promonkeyli/website-next:latest
+          tags: registry.cn-hangzhou.aliyuncs.com/promonkeyli/website-next:latest
           registry: ${{ secrets.DOCKER_REGISTRY }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
