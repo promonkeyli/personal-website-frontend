@@ -12,7 +12,8 @@
     "changelog:init": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "api": "node script/generateType.js",
-    "openApi": "node script/genOpenApi.js"
+    "openApi": "node script/genOpenApi.js",
+    "test": "echo \"Error: No test specified\" && exit 1"
   },
   "dependencies": {
     "next": "15.0.0-rc.0",
