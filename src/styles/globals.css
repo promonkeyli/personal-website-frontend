@@ -8,21 +8,19 @@ body {
   width: 100vw;
   height: 100vh;
   background-size: cover;
-  background: url("/images/bg/macos-01-1920*1080.jpg") no-repeat fixed;
+  background: url("/images/bg/macos-01-1920x1080.jpg") no-repeat fixed;
 }
 
-@media only screen and (min-width: 2560px) and (max-width: 3840px){
+@media only screen and (min-width: 2560px) and (max-width: 3840px) {
   body {
-    background-image: url("/images/bg/macos-01-2560*1440.jpg")
+    background-image: url("/images/bg/macos-01-2560x1440.jpg");
   }
 }
-
-@media only screen and (min-width: 3840px){
+@media only screen and (min-width: 3840px) {
   body {
-    background-image: url("/images/bg/macos-01-3840*2160.jpg")
+    background-image: url("/images/bg/macos-01-3840x2160.jpg");
   }
 }
-
 
 .tooltip:hover .tooltip-text {
   visibility: visible;
