@@ -43,8 +43,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           envs: IMAGE,CONTAINER
           script: |
-            if docker ps -a | grep "$CONTAINER_NAME"; then
-             docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME && docker rmi $IMAGE
+            if docker ps -a | grep "$CONTAINER"; then
+             docker stop $CONTAINER && docker rm $CONTAINER && docker rmi $IMAGE
             fi
             docker pull $IMAGE
             docker run -d --name $CONTAINER -p 80:80 -p 443:443 -v /data/nginx-certs:/etc/nginx/certs $IMAGE
