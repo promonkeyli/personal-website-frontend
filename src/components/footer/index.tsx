@@ -1,6 +1,6 @@
 export default function () {
   return (
-    <div className="absolute bottom-5 w-full text-white text-sm tracking-wider flex items-center justify-center">
+    <div className="absolute bottom-5 w-full text-white text-xs tracking-widest flex items-center justify-center">
       <span>Copyright @ 2024 Design by Young &nbsp;&nbsp;</span>
       <a
         target="_blank"

@@ -17,14 +17,14 @@ export default function Page() {
 
   return (
     <div className="bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-screen h-screen grid place-content-center">
-      <div className="card card-compact bg-base-100 w-96 shadow-xl flex items-center gap-8 p-10">
+      <div className="card glass w-96 shadow-2xl flex items-center gap-8 p-10">
         <div className="avatar">
           <div className="w-20 rounded-full">
             <img src="images/avatar.png" alt="avatar.png" />
           </div>
         </div>
         <select
-          className="select select-bordered w-full"
+          className="select w-full"
           onChange={handleSelectChange}
           value={role}
         >
@@ -32,11 +32,7 @@ export default function Page() {
           <option value={SYSTEM_ROLE.NORMAL}>{SYSTEM_ROLE.NORMAL}</option>
         </select>
         {role === SYSTEM_ROLE.ADMIN && (
-          <input
-            type="text"
-            className="input input-bordered w-full"
-            placeholder="password"
-          />
+          <input type="text" className="input w-full" placeholder="password" />
         )}
         <button className="btn w-full" type="button" onClick={handleBtnClick}>
           login
