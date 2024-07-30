@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+.container-bg {
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -12,12 +12,12 @@ body {
 }
 
 @media only screen and (min-width: 2560px) and (max-width: 3840px) {
-  body {
+  .container-bg {
     background-image: url("/images/bg/macos-01-2560x1440.jpg");
   }
 }
 @media only screen and (min-width: 3840px) {
-  body {
+  .container-bg {
     background-image: url("/images/bg/macos-01-3840x2160.jpg");
   }
 }
