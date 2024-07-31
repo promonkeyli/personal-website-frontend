@@ -4,7 +4,7 @@ import IMenu from "@/components/menu";
 
 export default function Home() {
   return (
-    <div className="container-bg">
+    <div className="mac-bg">
       <IMenu />
       <IDock />
     </div>
