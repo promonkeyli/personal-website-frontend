@@ -1,3 +1,4 @@
+"use client";
 import IDock from "@/components/dock";
 import IMenu from "@/components/menu";
 
