@@ -1,7 +1,7 @@
 "use client";
 import ContentTools from "@/components/content/content-tools";
 import IWindow, { type IWindowRef } from "@/components/window";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function IDock() {
   const IWindowRef = useRef<IWindowRef | null>(null);

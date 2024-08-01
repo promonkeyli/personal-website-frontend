@@ -1,14 +1,5 @@
 "use client";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import useFullScreenStore from "@/stores/system/fullScreen";
 import { useRouter } from "next/navigation";
 
@@ -23,7 +14,7 @@ export default function IMenu() {
   return (
     <div className="h-[32px] bg-white bg-opacity-35 flex justify-between items-center pr-5 pl-2">
       <div className="flex items-center">
-        <DropdownMenu>
+        {/* <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar className="w-[24px] h-[24px]">
               <AvatarImage src="images/avatar.png" alt="avatar.png" />
@@ -44,7 +35,7 @@ export default function IMenu() {
               退出
             </DropdownMenuItem>
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
       </div>
       <div>
         {isFullScreen ? (

@@ -1,27 +1,44 @@
-@import "./utils/tooltip.css";
 @import "normalize.css";
-@import "globals.css";
+@import "tailwind.css";
 
-/* 玻璃透明背景样式 */
-.glass {
-  border: none;
-  -webkit-backdrop-filter: blur(var(--glass-blur, 40px));
-  backdrop-filter: blur(var(--glass-blur, 40px));
-  background-color: transparent;
-  background-image: linear-gradient(
-      135deg,
-      rgb(255 255 255 / var(--glass-opacity, 30%)),
-      #0000
-    ),
-    linear-gradient(
-      var(--glass-reflex-degree, 100deg),
-      rgb(255 255 255 / var(--glass-reflex-opacity, 10%)) 25%,
-      rgb(0 0 0/0%) 25%
-    );
-  box-shadow: 0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%))
-      inset,
-    0 0 0 2px #0000000d;
-  text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
+/* tooltip 纯css实现 */
+.i-tool-tip {
+  position: relative;
+}
+
+.i-tool-tip::after {
+  content: attr(data-tip-content);
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #000;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding: 2px 10px;
+  transform: translate(-50%, calc(-100% - 20px));
+  border-radius: 5px;
+  /* 禁止换行，保证撑开容器 */
+  white-space: nowrap;
+  font-size: 14px;
+}
+.i-tool-tip::before {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid rgba(255, 255, 255, 0.6);
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, calc(-100% - 13px));
+}
+.i-tool-tip::after,
+.i-tool-tip::before {
+  display: none;
+}
+.i-tool-tip:hover::after,
+.i-tool-tip:hover::before {
+  display: block;
 }
 
 /* mac desk 渐变背景 */
