@@ -54,8 +54,11 @@ function useLogin() {
     setPwd(e.target.value);
   };
   const handleSubmit = () => {
-    console.log("🚀 ~ handleSubmit ~ role, pwd:", role, pwd);
-    router.push("/");
+    if (role === SYSTEM_ROLE.ADMIN) {
+      router.push("/admin/index");
+    } else {
+      router.push("/");
+    }
   };
   return {
     role,

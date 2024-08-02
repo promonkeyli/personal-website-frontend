@@ -13,29 +13,20 @@ export default function IMenu() {
 
   return (
     <div className="h-[32px] bg-white bg-opacity-35 flex justify-between items-center pr-5 pl-2">
-      <div className="flex items-center">
-        {/* <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Avatar className="w-[24px] h-[24px]">
-              <AvatarImage src="images/avatar.png" alt="avatar.png" />
-            </Avatar>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="bg-white bg-opacity-30 border-none"
-            sideOffset={10}
-            collisionPadding={5}
-          >
-            <DropdownMenuItem className="DropdownMenuItem">
-              设置
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              className="DropdownMenuItem"
-              onSelect={handleExit}
-            >
-              退出
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu> */}
+      <div className="dropdown rounded-md flex justify-between items-center">
+        <div tabIndex={0} className="avatar">
+          <div className="w-6 rounded-full">
+            <img src="images/avatar.png" alt="avatar.png" />
+          </div>
+        </div>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu rounded-md bg-base-100 z-[1] w-36 p-1 shadow top-8"
+        >
+          <li onClick={handleExit}>
+            <a>退出</a>
+          </li>
+        </ul>
       </div>
       <div>
         {isFullScreen ? (
