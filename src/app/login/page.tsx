@@ -12,7 +12,7 @@ export default function Page() {
     <div className="bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-screen h-screen grid place-content-center">
       <div className="card glass w-96 p-10 flex flex-col items-center gap-5">
         <div className="avatar">
-          <div className="w-24 rounded-full transition-transform duration-1000 hover:rotate-[360deg] mx-auto">
+          <div className="w-20 rounded-full transition-transform duration-1000 hover:rotate-[360deg] mx-auto">
             <img src="images/avatar.png" alt="avatar.png" />
           </div>
         </div>
