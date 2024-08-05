@@ -1,6 +1,7 @@
 "use client";
 import { postLogin } from "@/api/api0";
 import Footer from "@/components/footer";
+import { showToast } from "@/components/toast";
 import { SYSTEM_ROLE } from "@/constants";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -59,8 +60,8 @@ function useLogin() {
       username: role,
       password: pwd,
     };
-    const res = await postLogin(user);
-    console.log(res);
+    // const res = await postLogin(user);
+    showToast("12121212121");
     // if (role === SYSTEM_ROLE.ADMIN) {
     //   router.push("/admin/index");
     // } else {

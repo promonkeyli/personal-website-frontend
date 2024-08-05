@@ -19,6 +19,23 @@ const config: Config = {
       },
     },
   },
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#00a0ff",
+          secondary: "#96da00",
+          accent: "#00aeff",
+          neutral: "#1e1100",
+          "base-100": "#fdfeff",
+          info: "#00aef5",
+          success: "#008500",
+          warning: "#ba4f00",
+          error: "#ffa0b5",
+        },
+      },
+    ],
+  },
   plugins: [daisyui],
 };
 export default config;

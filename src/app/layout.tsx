@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/common.css";
+import { IToastProvider } from "@/components/toast";
 import type React from "react";
 
 export const metadata: Metadata = {
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <IToastProvider>{children}</IToastProvider>
+      </body>
     </html>
   );
 }
