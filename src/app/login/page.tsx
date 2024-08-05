@@ -1,4 +1,5 @@
 "use client";
+import { postLogin } from "@/api/api0";
 import Footer from "@/components/footer";
 import { SYSTEM_ROLE } from "@/constants";
 import { useRouter } from "next/navigation";
@@ -26,11 +27,11 @@ export default function Page() {
         </select>
         {role === SYSTEM_ROLE.ADMIN && (
           <input
-            type="text"
+            type="password"
             className="input w-full"
             placeholder="password"
             value={pwd}
-            onBlur={handlePwdChange}
+            onChange={handlePwdChange}
           />
         )}
         <button type="button" className="btn w-full" onClick={handleSubmit}>
@@ -53,12 +54,18 @@ function useLogin() {
   const handlePwdChange = (e: any) => {
     setPwd(e.target.value);
   };
-  const handleSubmit = () => {
-    if (role === SYSTEM_ROLE.ADMIN) {
-      router.push("/admin/index");
-    } else {
-      router.push("/");
-    }
+  const handleSubmit = async () => {
+    const user: API.User = {
+      username: role,
+      password: pwd,
+    };
+    const res = await postLogin(user);
+    console.log(res);
+    // if (role === SYSTEM_ROLE.ADMIN) {
+    //   router.push("/admin/index");
+    // } else {
+    //   router.push("/");
+    // }
   };
   return {
     role,

@@ -4,4 +4,9 @@ declare namespace API {
     name?: string;
     url?: string;
   };
+
+  type User = {
+    password?: string;
+    username?: string;
+  };
 }

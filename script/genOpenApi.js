@@ -1,6 +1,9 @@
 import { generateService } from "@umijs/openapi";
 
+const BASE_URL = "http://api.promonkeyli.top:8080";
+
 generateService({
-  schemaPath: "http://127.0.0.1:8001/swagger/doc.json",
+  requestLibPath: 'import request from "@/utils/http"',
+  schemaPath: `${BASE_URL}/swagger/doc.json`,
   serversPath: "src",
 });
