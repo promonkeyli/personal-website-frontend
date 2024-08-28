@@ -46,7 +46,9 @@ export default function Page() {
 
 function useLogin() {
   const router = useRouter();
+  // @ts-ignore
   const [role, setRole] = useState<string>(SYSTEM_ROLE.NORMAL);
+  // @ts-ignore
   const [pwd, setPwd] = useState<string>("");
 
   const handleRoleChange = (e: any) => {
@@ -55,6 +57,7 @@ function useLogin() {
   const handlePwdChange = (e: any) => {
     setPwd(e.target.value);
   };
+  // @ts-ignore
   const handleSubmit = async () => {
     const user: API.User = {
       username: role,
@@ -62,11 +65,11 @@ function useLogin() {
     };
     // const res = await postLogin(user);
     showToast("12121212121");
-    // if (role === SYSTEM_ROLE.ADMIN) {
-    //   router.push("/admin/index");
-    // } else {
-    //   router.push("/");
-    // }
+    if (role === SYSTEM_ROLE.ADMIN) {
+      router.push("/admin/index");
+    } else {
+      router.push("/");
+    }
   };
   return {
     role,

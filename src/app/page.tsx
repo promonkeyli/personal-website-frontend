@@ -9,7 +9,7 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     if (!useUserStore.getState().token) {
-      router.replace("/login");
+      // router.replace("/login");
     }
   }, []);
   return (
