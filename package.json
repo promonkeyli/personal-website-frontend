@@ -10,8 +10,7 @@
     "lint": "biome lint --apply --no-errors-on-unmatched",
     "commit": "git add . && git-cz",
     "api": "node script/generateType.js",
-    "openApi": "node script/genOpenApi.js",
-    "test": "echo \"Error: No test specified\" && exit 1"
+    "openApi": "node script/genOpenApi.js"
   },
   "dependencies": {
     "next": "15.0.0-rc.0",
