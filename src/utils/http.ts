@@ -1,37 +1,19 @@
 import useUserStore from "@/stores/auth/user";
-import axios from "axios";
+import { addRequestInterceptor, create } from "@/utils/request";
 
 const TOKEN_BLACK_LIST = ["/login"];
 
-const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  timeout: 1000,
+create({
+  baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
+  timeout: 3000,
 });
 
-axiosInstance.interceptors.request.use(
-  (request) => {
-    const isAddToken = !TOKEN_BLACK_LIST.includes(request.url as string);
-    if (isAddToken) {
-      const { token } = useUserStore.getState();
-      (request.headers as any)["Authorization"] = `Bearer ${token}`;
-    }
-    return request;
-  },
-  (error) => Promise.reject(error),
-);
-
-axiosInstance.interceptors.response.use(
-  // (response) => {
-  //   if (response.data.code !== 200) {
-  //     console.error(codeMap[response.data.code]);
-  //   }
-  //   return response.data;
-  // },
-  (response) => response.data,
-  (error) => Promise.reject(error),
-);
-
-export default axiosInstance;
+// addRequestInterceptor();
+// const isAddToken = !TOKEN_BLACK_LIST.includes(request.url as string);
+// if (isAddToken) {
+//   const { token } = useUserStore.getState();
+//   (config.headers as any)["Authorization"] = `Bearer ${token}`;
+// }
 
 const codeMap: { [key: number]: string } = {
   200: "服务器成功返回请求的数据。",
