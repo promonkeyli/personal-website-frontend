@@ -6,6 +6,7 @@ interface UserStore {
   token: string;
   setUsername: (n: string) => void;
   setToken: (t: string) => void;
+  clearUserInfo: () => void;
 }
 
 const useUserStore = create<UserStore>()(
@@ -21,6 +22,12 @@ const useUserStore = create<UserStore>()(
         set({
           token: t,
         }),
+      clearUserInfo: () => {
+        set({
+          username: "",
+          token: "",
+        });
+      },
     }),
     {
       name: "user",

@@ -1,5 +1,6 @@
 "use client";
 
+import useUserStore from "@/stores/auth/user";
 import useFullScreenStore from "@/stores/system/fullScreen";
 import { getCDNImage } from "@/utils/cdn";
 import { useRouter } from "next/navigation";
@@ -7,8 +8,11 @@ import { useRouter } from "next/navigation";
 export default function IMenu() {
   const { isFullScreen, exitFullScreen, enterFullScreen } =
     useFullScreenStore();
+  const { clearUserInfo } = useUserStore();
   const router = useRouter();
+
   const handleExit = () => {
+    clearUserInfo();
     router.push("/login");
   };
 

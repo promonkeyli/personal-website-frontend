@@ -1,5 +1,5 @@
 "use client";
-import { postUsers } from "@/api/yonghu";
+import { postLogin } from "@/api/yonghu";
 import Footer from "@/components/footer";
 import { showToast } from "@/components/toast";
 import { SYSTEM_ROLE } from "@/constants";
@@ -64,8 +64,7 @@ function useLogin() {
       username: role,
       password: pwd,
     };
-    // const res = await postUsers(user);
-    showToast("12121212121");
+    const res = await postLogin(user);
     if (role === SYSTEM_ROLE.ADMIN) {
       router.push("/admin/index");
     } else {
