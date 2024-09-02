@@ -3,6 +3,7 @@ import { postUsers } from "@/api/yonghu";
 import Footer from "@/components/footer";
 import { showToast } from "@/components/toast";
 import { SYSTEM_ROLE } from "@/constants";
+import { getCDNImage } from "@/utils/cdn";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -15,7 +16,7 @@ export default function Page() {
       <div className="card glass w-96 p-10 flex flex-col items-center gap-5">
         <div className="avatar">
           <div className="w-20 rounded-full transition-transform duration-1000 hover:rotate-[360deg] mx-auto">
-            <img src="images/avatar.png" alt="avatar.png" />
+            <img src={getCDNImage("avatar.png")} alt="avatar.png" />
           </div>
         </div>
         <select

@@ -1,21 +1,22 @@
 "use client";
 import ContentTools from "@/components/content/content-tools";
 import IWindow, { type IWindowRef } from "@/components/window";
+import { getCDNImage } from "@/utils/cdn";
 import { useRef } from "react";
 
 export default function IDock() {
   const IWindowRef = useRef<IWindowRef | null>(null);
 
   const images = [
-    { name: "Photos", src: "/images/launchpad.png" },
-    { name: "Finder", src: "/images/finder.png" },
-    { name: "Safari", src: "/images/safari.png" },
-    { name: "notes", src: "/images/notes.png" },
-    { name: "siri", src: "/images/siri.png" },
-    { name: "apple music", src: "/images/apple_music.png" },
-    { name: "message", src: "/images/messages.png" },
-    { name: "reminder", src: "/images/reminders.png" },
-    { name: "settings", src: "/images/system_settings.png" },
+    { name: "Photos", src: "launchpad.png" },
+    { name: "Finder", src: "finder.png" },
+    { name: "Safari", src: "safari.png" },
+    { name: "notes", src: "notes.png" },
+    { name: "siri", src: "siri.png" },
+    { name: "apple music", src: "apple_music.png" },
+    { name: "message", src: "messages.png" },
+    { name: "reminder", src: "reminders.png" },
+    { name: "settings", src: "system_settings.png" },
   ];
 
   const handleClick = (icon: any) => {
@@ -30,7 +31,7 @@ export default function IDock() {
         {images.map((icon, index) => (
           <span key={index} data-tip-content={icon.name} className="i-tool-tip">
             <img
-              src={icon.src}
+              src={getCDNImage(icon.src)}
               alt={icon.name}
               className="w-12 h-12"
               onClick={() => handleClick(icon)}

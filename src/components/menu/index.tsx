@@ -1,6 +1,7 @@
 "use client";
 
 import useFullScreenStore from "@/stores/system/fullScreen";
+import { getCDNImage } from "@/utils/cdn";
 import { useRouter } from "next/navigation";
 
 export default function IMenu() {
@@ -16,7 +17,7 @@ export default function IMenu() {
       <div className="dropdown rounded-md flex justify-between items-center">
         <div tabIndex={0} className="avatar">
           <div className="w-6 rounded-full">
-            <img src="images/avatar.png" alt="avatar.png" />
+            <img src={getCDNImage("avatar.png")} alt="avatar.png" />
           </div>
         </div>
         <ul
@@ -31,14 +32,14 @@ export default function IMenu() {
       <div>
         {isFullScreen ? (
           <img
-            src="/images/fullscreen_exit.svg"
+            src={getCDNImage("fullscreen_exit.svg")}
             className="w-[22px] h-[22px] cursor-pointer"
             alt=""
             onClick={exitFullScreen}
           />
         ) : (
           <img
-            src="/images/fullscreen.svg"
+            src={getCDNImage("fullscreen.svg")}
             className="w-[22px] h-[22px] cursor-pointer"
             alt=""
             onClick={enterFullScreen}
