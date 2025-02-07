@@ -1,6 +1,6 @@
 // @ts-ignore
 /* eslint-disable */
-import request from '@/utils/http';
+import request from '@/utils/request/index';
 
 /** 用户登录 使用用户名密码进行登录 POST /login */
 export async function postLogin(body: API.User, options?: { [key: string]: any }) {

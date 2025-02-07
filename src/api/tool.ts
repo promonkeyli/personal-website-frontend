@@ -1,6 +1,6 @@
 // @ts-ignore
 /* eslint-disable */
-import request from '@/utils/http';
+import request from '@/utils/request/index';
 
 /** 工具列表 获取工具 GET /tools */
 export async function getTools(options?: { [key: string]: any }) {

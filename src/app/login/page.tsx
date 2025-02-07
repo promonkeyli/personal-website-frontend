@@ -1,5 +1,5 @@
 "use client";
-import { postLogin } from "@/api/yonghu";
+import { postLogin } from "@/api/user";
 import Footer from "@/components/footer";
 import { showToast } from "@/components/toast";
 import { SYSTEM_ROLE } from "@/constants";
