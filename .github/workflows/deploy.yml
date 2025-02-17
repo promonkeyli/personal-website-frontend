@@ -47,7 +47,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           envs: IMAGE,CONTAINER,USERNAME,PASSWORD,REGISTRY
           script: |
-            echo "$ACR_PASSWORD" | docker login -u "$USERNAME" --password-stdin "$REGISTRY"
+            echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin "$REGISTRY"
             if docker ps -a | grep "$CONTAINER"; then
              docker stop $CONTAINER && docker rm $CONTAINER && docker rmi $IMAGE
             fi
