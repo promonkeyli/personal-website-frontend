@@ -25,7 +25,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: website-next:latest
+          tags: ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/${{ secrets.ACR_IMAGE }}:latest
+
 
   deploy:
     runs-on: ubuntu-latest
@@ -34,8 +35,8 @@ jobs:
       - name: SSH Login
         uses: appleboy/ssh-action@v1.0.3
         env:
-          IMAGE: ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/website-next:latest
-          CONTAINER: website-next
+          IMAGE: ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/${{ secrets.ACR_IMAGE }}:latest
+          CONTAINER: ${{ secrets.ACR_IMAGE }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
