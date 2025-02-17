@@ -52,4 +52,4 @@ jobs:
              docker stop $CONTAINER && docker rm $CONTAINER && docker rmi $IMAGE
             fi
             docker pull $IMAGE
-            docker run -d --name $CONTAINER -p 80:80 -p 443:443 -v /data/nginx-certs:/etc/nginx/certs $IMAGE
+            docker run -d --name $CONTAINER -p 80:80  $IMAGE
