@@ -9,7 +9,7 @@ export async function postLogin(body: API.User, options?: { [key: string]: any }
     headers: {
       'Content-Type': 'application/json',
     },
-    data: body,
+    // data: body,
     ...(options || {}),
   });
 }
@@ -37,7 +37,7 @@ export async function postUsers(body: API.User, options?: { [key: string]: any }
     headers: {
       'Content-Type': 'application/json',
     },
-    data: body,
+    // data: body,
     ...(options || {}),
   });
 }

@@ -17,7 +17,7 @@ export async function postTools(body: API.Tool, options?: { [key: string]: any }
     headers: {
       'Content-Type': 'application/json',
     },
-    data: body,
+    // data: body,
     ...(options || {}),
   });
 }
