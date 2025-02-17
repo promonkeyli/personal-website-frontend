@@ -35,6 +35,9 @@ jobs:
       - name: SSH Login
         uses: appleboy/ssh-action@v1.0.3
         env:
+          REGISTRY: ${{ secrets.ACR_REGISTRY }}
+          USERNAME: ${{ secrets.ACR_REGISTRY }}
+          PASSWORD: ${{ secrets.ACR_TOKEN }}
           IMAGE: ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/${{ secrets.ACR_IMAGE }}:latest
           CONTAINER: ${{ secrets.ACR_IMAGE }}
         with:
@@ -42,10 +45,11 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          envs: IMAGE,CONTAINER
+          envs: IMAGE,CONTAINER,REGISTRY,USERNAME,PASSWORD
           script: |
             if docker ps -a | grep "$CONTAINER"; then
              docker stop $CONTAINER && docker rm $CONTAINER && docker rmi $IMAGE
             fi
+            docker login --username=$USERNAME --password=$PASSWORD $REGISTRY
             docker pull $IMAGE
             docker run -d --name $CONTAINER -p 80:80 -p 443:443 -v /data/nginx-certs:/etc/nginx/certs $IMAGE
