@@ -2,7 +2,7 @@ import { execSync } from "node:child_process";
 import fs from "node:fs";
 import http from "node:http";
 
-const url = "http://127.0.0.1:8001/swagger/doc.json";
+const url = "http://127.0.0.1:8081/v1/swagger/doc.json";
 const outputDir = "src/api";
 
 function downloadSwaggerJson(url, callback) {
