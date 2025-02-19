@@ -2,7 +2,7 @@
 import { postLogin } from "@/api/sdk.gen";
 import type { ModelsUser } from "@/api/types.gen";
 import Footer from "@/components/footer";
-import { showToast } from "@/components/toast";
+import IToast from "@/components/toast";
 import { SYSTEM_ROLE } from "@/constants";
 import { getCDNImage } from "@/utils/cdn";
 import { useRouter } from "next/navigation";
@@ -66,6 +66,9 @@ function useLogin() {
     };
     const res = await postLogin({ body: user });
     console.log("res====", res);
+    if (res.response.status !== 200) {
+      return;
+    }
     if (role === SYSTEM_ROLE.ADMIN) {
       router.push("/admin/index");
     } else {

@@ -41,7 +41,7 @@ function httpClientInit() {
     const isAddToken = !TOKEN_BLACK_LIST.includes(req.url as string);
     if (isAddToken) {
       const { token } = useUserStore.getState();
-      (req.headers as any)["Authorization"] = `Bearer ${token}`;
+      req.headers.set("Authorization", `Bearer ${token}`);
     }
     console.log("req", req);
     return req;
