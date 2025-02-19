@@ -1,5 +1,6 @@
 "use client";
-import { postLogin } from "@/api/user";
+import { postLogin } from "@/api/sdk.gen";
+import type { ModelsUser } from "@/api/types.gen";
 import Footer from "@/components/footer";
 import { showToast } from "@/components/toast";
 import { SYSTEM_ROLE } from "@/constants";
@@ -58,13 +59,13 @@ function useLogin() {
   const handlePwdChange = (e: any) => {
     setPwd(e.target.value);
   };
-  // @ts-ignore
   const handleSubmit = async () => {
-    const user: API.User = {
+    const user: ModelsUser = {
       username: role,
       password: pwd,
     };
-    const res = await postLogin(user);
+    const res = await postLogin({ body: user });
+    console.log("res====", res);
     if (role === SYSTEM_ROLE.ADMIN) {
       router.push("/admin/index");
     } else {

@@ -2,9 +2,11 @@
 import IDock from "@/components/dock";
 import IMenu from "@/components/menu";
 import useUserStore from "@/stores/auth/user";
+import httpClientInit from "@/utils/http";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+httpClientInit();
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
