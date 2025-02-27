@@ -14,6 +14,9 @@ importers:
       axios:
         specifier: ^1.7.7
         version: 1.7.7
+      clear-fetch:
+        specifier: 0.0.3
+        version: 0.0.3
       next:
         specifier: ^15.1.6
         version: 15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -643,6 +646,9 @@ packages:
 
   citty@0.1.6:
     resolution: {integrity: sha512-tskPPKEs8D2KPafUypv2gxwJP8h/OaJmC82QQGGDQcHvXX43xF2VDACcJVmZ0EuSxkpO9Kc4MlrA3q0+FG58AQ==}
+
+  clear-fetch@0.0.3:
+    resolution: {integrity: sha512-zxX1mQ+gidaxmNjHq/YpgkeRhPkIZB5xkBO/ntcmfwR+zoFujNq3mQffbceB/lA+OxCFeVjBuc5XLwCwqTXavQ==}
 
   cli-cursor@3.1.0:
     resolution: {integrity: sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw==}
@@ -2562,6 +2568,8 @@ snapshots:
   citty@0.1.6:
     dependencies:
       consola: 3.4.0
+
+  clear-fetch@0.0.3: {}
 
   cli-cursor@3.1.0:
     dependencies:
